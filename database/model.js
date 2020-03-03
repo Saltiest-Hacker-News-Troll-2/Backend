@@ -6,6 +6,7 @@ module.exports = {
   findUserById,
   findUserByUsername,
   updateUser,
+  getComments,
   getCommentsByUsername,
   getCommentById,
   getCommentsByParent,
@@ -43,6 +44,9 @@ function updateUser(id, user) {
 }
 
 //* COMMENTS
+function getComments() {
+  return db("CommentTable");
+}
 function getCommentsByUsername(username) {
   return db("CommentTable").where("by", username);
 }

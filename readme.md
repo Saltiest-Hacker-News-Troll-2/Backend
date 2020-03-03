@@ -16,6 +16,8 @@
 
 | Edit User | PUT | /api/user/:user |
 
+| Comments List | GET | /api/comments |
+
 | Users comments | GET | /api/user/:user |
 
 | Comment by id | GET | /api/comments/:id |

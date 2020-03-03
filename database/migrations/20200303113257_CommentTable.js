@@ -1,10 +1,11 @@
 exports.up = function(knex) {
-  knex.schema.createTable("CommentTable", tbl => {
+  return knex.schema.createTable("CommentTable", tbl => {
     tbl.increments();
-    tbl.string("text");
+    tbl.string("by");
+    tbl.string("text").notNullable();
   });
 };
 
 exports.down = function(knex) {
-  knex.schema.createTableIfExists("CommentTable");
+  return knex.schema.dropTableIfExists("CommentTable");
 };

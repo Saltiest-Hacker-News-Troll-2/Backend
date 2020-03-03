@@ -1,7 +1,15 @@
 const router = require("express").Router();
 const db = require("../../../database/model");
 const { verifyComment } = require("../middleware/comment");
+
 // GET USER INFO FROM TOKEN SENT ON HEADER OF AUTH
+
+router.get("/", (req, res) => {
+  db.getComments().then(comments =>
+    !comments ? res.status(404) : res.status(200).json(comments)
+  );
+});
+
 router.get("/:id", (req, res) => {
   const { id } = req.params;
   db.getCommentById(id).then(comment =>
@@ -35,6 +43,7 @@ router.get("/post/:post", (req, res) => {
 
 router.post("/", verifyComment, (req, res) => {
   const comment = req.body;
+  comment.by = req.decodedToken.username;
   db.createComment(comment)
     .then(comment => res.status(201).json(comment))
     .catch(err =>
