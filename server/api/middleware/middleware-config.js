@@ -1,11 +1,13 @@
 const express = require("express");
-// const morgan = require("morgan");
 const helmet = require("helmet");
 const cors = require("cors");
+const morgan = require("morgan");
 
 module.exports = server => {
   server.use(express.json());
-  // server.use(morgan("dev"));
   server.use(helmet());
   server.use(cors());
+  if (process.env.DB_ENV == "development") {
+    server.use(morgan("dev"));
+  }
 };
