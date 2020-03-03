@@ -2,21 +2,33 @@
 
 ## Features
 
-| Feature        | Method | URL                |
-| :------------- | :----: | :----------------- |
-| Register User  |  POST  | /api/auth/register |
-| Login User     |  POST  | /api/auth/login    |
-| Users comments |  GET   | /api/user/:user    |
-| Comment by id  |  GET   | /api/comments/:id  |
-| Post comments  |  GET   | /api/post/:post    |
+| Feature | Method | URL |
+| :------ | :----: | :-- |
+
+
+<!-- todo REMOVE THIS FEATURE LATER -->
+
+| List Users | GET | /api/auth/users |
+
+| Register User | POST | /api/auth/register |
+
+| Login User | POST | /api/auth/login |
+
+| Edit User | PUT | /api/user/:user |
+
+| Users comments | GET | /api/user/:user |
+
+| Comment by id | GET | /api/comments/:id |
+
+| Post comments | GET | /api/post/:post |
 
 ## Register
 
--First Name \* ?required?
+-First Name \*not required yet
 
--Last Name \* ?required?
+-Last Name \*not required yet
 
--Email \* ?required?
+-Email \*not required yet
 
 -Username \*required
 
@@ -24,9 +36,13 @@
 
 ## Login
 
-Username \*required
+-Username \*required
 
-Password \*required
+-Password \*required
+
+## User Edit
+
+-body will contain any updates wanted to user, send with token
 
 ## Comments
 

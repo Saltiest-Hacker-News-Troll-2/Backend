@@ -4,9 +4,9 @@ const jwt = require("jsonwebtoken");
 const { jwtSecret } = require("../secrets");
 const { JWT_SECRET = jwtSecret } = process.env;
 const db = require("../../../database/model");
-const { validateUserBody, validateUsername } = require("../middleware/auth");
+const { validateUserBody, validateNewUsername } = require("../middleware/auth");
 
-router.post("/register", validateUserBody, validateUsername, (req, res) => {
+router.post("/register", validateUserBody, validateNewUsername, (req, res) => {
   console.log("REGISTER");
   const user = req.body;
   const hash = bcrypt.hashSync(user.password, 8); //todo change salt
@@ -37,6 +37,7 @@ router.post("/login", validateUserBody, (req, res) => {
   });
 });
 
+//todo remove this endpoint
 router.get("/users", (req, res) => {
   db.userList()
     .then(users => res.status(200).json(users))
@@ -51,10 +52,9 @@ router.use("/", (req, res) => {
 
 module.exports = router;
 
-function tokenGenerator({ username, password }) {
+function tokenGenerator(user) {
   const payload = {
-    username,
-    password
+    ...user
   };
   const secret = JWT_SECRET;
   const options = {
