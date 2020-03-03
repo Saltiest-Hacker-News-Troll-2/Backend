@@ -1,6 +1,6 @@
 exports.up = function(knex) {
   return knex.schema.createTable("USER", tbl => {
-    tbl.increments();
+    tbl.increments().primary();
     tbl.string("first_name");
     tbl.string("last_name");
     tbl.string("email");

@@ -1,6 +1,6 @@
 exports.up = function(knex) {
   return knex.schema.createTable("CommentTable", tbl => {
-    tbl.increments();
+    tbl.increments().primary();
     tbl.string("by");
     tbl.string("text").notNullable();
   });
