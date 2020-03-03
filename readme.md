@@ -10,11 +10,6 @@
 | Users comments |  GET   | /api/user/:user    |
 | Post comments  |  GET   | /api/post/:post    |
 
-## Users
-
-<!-- --Creation (Date/Time) -->
-<!-- --Updated (Date/Time) -->
-
 ## Register
 
 -First Name \* ?required?
