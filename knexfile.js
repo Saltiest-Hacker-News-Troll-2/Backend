@@ -6,6 +6,9 @@ module.exports = {
     connection: {
       filename: "./database/HackerRankTopDown.db3"
     },
+    migrations: {
+      directory: "./database/migrations"
+    },
     useNullAsDefault: true
   },
 

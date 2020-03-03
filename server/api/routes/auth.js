@@ -7,6 +7,7 @@ const db = require("../../../database/model");
 const { validateUserBody, validateUsername } = require("../middleware/auth");
 
 router.post("/register", validateUserBody, validateUsername, (req, res) => {
+  console.log("REGISTER");
   const user = req.body;
   const hash = bcrypt.hashSync(user.password, 8); //todo change salt
   user.password = hash;
