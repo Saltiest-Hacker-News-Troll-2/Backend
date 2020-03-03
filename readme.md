@@ -2,10 +2,13 @@
 
 ## Features
 
-| Feature       | Method | URL                |
-| :------------ | :----: | :----------------- |
-| Register User |  POST  | /api/auth/register |
-| Login User    |  POST  | /api/auth/login    |
+| Feature        | Method | URL                |
+| :------------- | :----: | :----------------- |
+| Register User  |  POST  | /api/auth/register |
+| Login User     |  POST  | /api/auth/login    |
+| Comment by id  |  GET   | /api/comments/:id  |
+| Users comments |  GET   | /api/user/:user    |
+| Post comments  |  GET   | /api/post/:post    |
 
 ## Users
 
@@ -26,6 +29,14 @@
 
 ## Login
 
--Username \*required
+Username \*required
 
--Password \*required
+Password \*required
+
+## Comments
+
+Get comments by user
+
+Get comments by comment ID
+
+Get comments by parent (post/comment)
