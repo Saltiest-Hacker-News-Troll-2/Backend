@@ -37,6 +37,14 @@ router.post("/login", validateUserBody, (req, res) => {
   });
 });
 
+router.get("/users", (req, res) => {
+  db.userList()
+    .then(users => res.status(200).json(users))
+    .catch(err =>
+      res.status(500).json({ errorMessage: "Unable to retrieve user list" })
+    );
+});
+
 router.use("/", (req, res) => {
   res.status(200).json({ authRoute: "up" });
 });
