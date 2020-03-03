@@ -6,6 +6,7 @@ module.exports = {
   findUserById,
   findUserByUsername,
   updateUser,
+  removeUser,
   getComments,
   getCommentsByUsername,
   getCommentById,
@@ -41,6 +42,12 @@ function updateUser(id, user) {
   return db("USER")
     .update(user)
     .where({ id });
+}
+
+function removeUser(id) {
+  return db("USER")
+    .where({ id })
+    .delete();
 }
 
 //* COMMENTS
