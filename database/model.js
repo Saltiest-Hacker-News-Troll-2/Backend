@@ -8,7 +8,9 @@ module.exports = {
   updateUser,
   getCommentsByUsername,
   getCommentById,
-  getCommentsByParent
+  getCommentsByParent,
+  createComment,
+  removeComment
 };
 
 //* USER
@@ -49,4 +51,14 @@ function getCommentById(id) {
 }
 function getCommentsByParent(id) {
   return db("CommentTable").where("parent", id);
+}
+function createComment(comment) {
+  return db("CommentTable")
+    .insert(comment)
+    .then(([id]) => getCommentById(id));
+}
+function removeComment(id) {
+  return db("CommentTable")
+    .where({ id })
+    .delete();
 }

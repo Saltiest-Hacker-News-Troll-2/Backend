@@ -1,5 +1,6 @@
 const router = require("express").Router();
 const db = require("../../../database/model");
+const { verifyComment } = require("../middleware/comment");
 // GET USER INFO FROM TOKEN SENT ON HEADER OF AUTH
 router.get("/:id", (req, res) => {
   const { id } = req.params;
@@ -29,6 +30,22 @@ router.get("/post/:post", (req, res) => {
     !comments
       ? res.status(404).json({ message: "No Comments" })
       : res.status(200).json(comments)
+  );
+});
+
+router.post("/", verifyComment, (req, res) => {
+  const comment = req.body;
+  db.createComment(comment)
+    .then(comment => res.status(201).json(comment))
+    .catch(err =>
+      res.status(500).json({ errorMessage: "unable to create comment", err })
+    );
+});
+
+router.delete("/:id", (req, res) => {
+  const { id } = req.params;
+  db.removeComment(id).then(count =>
+    !count ? res.status(404) : res.status(200)
   );
 });
 

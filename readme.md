@@ -20,7 +20,11 @@
 
 | Comment by id | GET | /api/comments/:id |
 
-| Post comments | GET | /api/post/:post |
+| Comments by parent | GET | /api/post/:post |
+
+| Create Comment | POST | /api/post |
+
+| Delete Comment | DELETE | /api/post/:id |
 
 ## Register
 
@@ -51,3 +55,5 @@ Get comments by user
 Get comments by comment ID
 
 Get comments by parent (post/comment)
+
+- post comment requires only "text" (currently)
