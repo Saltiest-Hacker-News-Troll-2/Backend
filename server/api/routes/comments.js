@@ -1,6 +1,6 @@
 const router = require("express").Router();
 const db = require("../../../database/model");
-const { verifyComment } = require("../middleware/comment");
+const { validateComment, verifyComment } = require("../middleware/comment");
 
 // GET USER INFO FROM TOKEN SENT ON HEADER OF AUTH
 
@@ -41,7 +41,7 @@ router.get("/post/:post", (req, res) => {
   );
 });
 
-router.post("/", verifyComment, (req, res) => {
+router.post("/", validateComment, (req, res) => {
   const comment = req.body;
   comment.by = req.decodedToken.username;
   db.createComment(comment)
@@ -51,11 +51,14 @@ router.post("/", verifyComment, (req, res) => {
     );
 });
 
-router.delete("/:id", (req, res) => {
+router.delete("/:id", verifyComment, (req, res) => {
   const { id } = req.params;
-  db.removeComment(id).then(count =>
-    !count ? res.status(404) : res.status(200)
-  );
+  db.removeComment(id).then(count => {
+    console.log({ count });
+    !count
+      ? res.status(404)
+      : res.status(200).json({ message: "Successfully deleted comment" });
+  });
 });
 
 router.use("/", (req, res) => {
