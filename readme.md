@@ -6,8 +6,8 @@
 | :------------- | :----: | :----------------- |
 | Register User  |  POST  | /api/auth/register |
 | Login User     |  POST  | /api/auth/login    |
-| Comment by id  |  GET   | /api/comments/:id  |
 | Users comments |  GET   | /api/user/:user    |
+| Comment by id  |  GET   | /api/comments/:id  |
 | Post comments  |  GET   | /api/post/:post    |
 
 ## Register
