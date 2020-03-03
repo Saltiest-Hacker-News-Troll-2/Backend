@@ -1,6 +1,7 @@
 const db = require("./config");
 
 module.exports = {
+  userList,
   addUser,
   findUserById,
   findUserByUsername,
@@ -11,6 +12,10 @@ module.exports = {
 };
 
 //* USER
+function userList() {
+  return db("USER");
+}
+
 function addUser(user) {
   return db("USER")
     .insert(user)
