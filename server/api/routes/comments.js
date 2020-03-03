@@ -54,7 +54,6 @@ router.post("/", validateComment, (req, res) => {
 router.delete("/:id", verifyComment, (req, res) => {
   const { id } = req.params;
   db.removeComment(id).then(count => {
-    console.log({ count });
     !count
       ? res.status(404)
       : res.status(200).json({ message: "Successfully deleted comment" });

@@ -7,6 +7,7 @@ const userRouter = require("./routes/user");
 
 const restricted = require("./middleware/restricted");
 
+//todo PUT BACK RESTRICTED ROUTES
 router.use("/auth", authRouter);
 router.use("/user", restricted, userRouter);
 router.use("/comments", restricted, commentsRouter);
