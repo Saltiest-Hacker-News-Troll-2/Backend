@@ -54,7 +54,23 @@
 
 ## Comments
 
+Get comments List
+-can take 2 query params: limit, offset
+
+- limit is quantity returned
+
+- offset is how many pages to skip
+
+- example: ?limit=2&offset=2 will return 2 records starting at record 5
+
 Get comments by user
+-can take 2 query params: limit, offset
+
+- limit is quantity returned
+
+- offset is how many pages to skip
+
+- example: ?limit=2&offset=2 will return 2 records starting at record 5
 
 Get comments by comment ID
 

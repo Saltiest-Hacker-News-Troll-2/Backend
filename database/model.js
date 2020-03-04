@@ -31,9 +31,7 @@ function addUser(user) {
 }
 
 function findUserById(id) {
-  return db("USER")
-    .where({ id })
-    .first();
+  return db("USER").where({ id });
 }
 
 function findUserByUsername(username) {
@@ -55,25 +53,40 @@ function removeUser(id) {
 }
 
 //* COMMENTS
-function getComments() {
-  return db("CommentTable");
+function getComments(limit, offset) {
+  return db("Items")
+    .limit(limit)
+    .offset(offset);
 }
-function getCommentsByUsername(username) {
-  return db("CommentTable").where("by", username);
+function getCommentsByUsername(username, limit, offset) {
+  return db("Items")
+    .limit(limit)
+    .offset(offset)
+    .where("By", username);
 }
 function getCommentById(id) {
-  return db("CommentTable").where({ id });
+  return db("Items")
+    .where({ id })
+    .first();
 }
 function getCommentsByParent(id) {
-  return db("CommentTable").where("parent", id);
+  return db("Items").where("parent", id);
 }
 function createComment(comment) {
-  return db("CommentTable")
+  return db("Items")
     .insert(comment)
     .then(([id]) => getCommentById(id));
 }
 function removeComment(id) {
-  return db("CommentTable")
+  return db("Items")
     .where({ id })
     .delete();
 }
+
+// function scoreGenerator(id) {
+//   return getCommentById(id).then(([comment]) => {
+//     getScore(comment.Text)
+//       .then(res => console.log("score", res))
+//       .catch(err => console.log("error", err));
+//   });
+// }

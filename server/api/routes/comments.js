@@ -5,7 +5,9 @@ const { validateComment, verifyComment } = require("../middleware/comment");
 // GET USER INFO FROM TOKEN SENT ON HEADER OF AUTH
 
 router.get("/", (req, res) => {
-  db.getComments().then(comments =>
+  let { limit, offset } = req.query;
+  offset = offset * limit;
+  db.getComments(limit, offset).then(comments =>
     !comments ? res.status(404) : res.status(200).json(comments)
   );
 });
@@ -18,24 +20,26 @@ router.get("/:id", (req, res) => {
 });
 
 router.get("/user/:user", (req, res) => {
+  let { limit, offset } = req.query;
+  offset = offset * limit;
   const username = req.params.user;
-  db.findUserByUsername(username).then(user => {
-    if (!user) {
-      res.status(404).end();
-    } else {
-      db.getCommentsByUsername(username).then(comments =>
-        !comments
-          ? res.status(400).json({ message: "No comments from this user" })
-          : res.status(200).json(comments)
-      );
-    }
-  });
+  // db.findUserByUsername(username).then(user => {
+  // if (!user) {
+  // res.status(404).end();
+  // } else {
+  db.getCommentsByUsername(username, limit, offset).then(comments =>
+    !comments.length
+      ? res.status(400).json({ message: "No comments from this user" })
+      : res.status(200).json(comments)
+  );
+  // }
+  // });
 });
 
 router.get("/post/:post", (req, res) => {
   const id = req.params.post;
   db.getCommentsByParent(id).then(
-    !comments
+    !comments.length
       ? res.status(404).json({ message: "No Comments" })
       : res.status(200).json(comments)
   );
@@ -43,9 +47,8 @@ router.get("/post/:post", (req, res) => {
 
 router.post("/", validateComment, (req, res) => {
   const comment = req.body;
-  comment.by = req.decodedToken.username;
   db.createComment(comment)
-    .then(comment => res.status(201).json(comment))
+    .then(comment => res.status(201).json({ comment }))
     .catch(err =>
       res.status(500).json({ errorMessage: "unable to create comment", err })
     );

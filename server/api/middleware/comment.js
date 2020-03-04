@@ -1,18 +1,19 @@
 const db = require("../../../database/model");
-module.exports = {
-  validateComment,
-  verifyComment
-};
+const axios = require("axios");
 
-function validateComment(req, res, next) {
-  const { text } = req.body;
-
-  if (!text) {
-    res.status(400).json({ errorMessage: "Please provide all details" });
+const validateComment = async (req, res, next) => {
+  req.body.By = req.decodedToken.username;
+  const { By, Text } = req.body;
+  if ((!By, !Text)) {
+    res.status(400).json({ errorMessage: "Please provide username and text" });
   } else {
+    const score = await axios
+      .get(`https://hn-ds-api.herokuapp.com/sentence/${Text}`)
+      .then(res => res.data.Analysis * -100);
+    req.body.Score = score;
     next();
   }
-}
+};
 
 function verifyComment(req, res, next) {
   const { id } = req.params;
@@ -28,3 +29,8 @@ function verifyComment(req, res, next) {
     });
   }
 }
+
+module.exports = {
+  validateComment,
+  verifyComment
+};
