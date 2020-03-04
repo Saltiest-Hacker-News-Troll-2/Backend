@@ -1,6 +1,7 @@
 const db = require("./config");
 
 module.exports = {
+  userTruncate,
   userList,
   addUser,
   findUserById,
@@ -16,6 +17,9 @@ module.exports = {
 };
 
 //* USER
+function userTruncate() {
+  return db("USER").truncate();
+}
 function userList() {
   return db("USER");
 }
