@@ -1,13 +1,12 @@
 const router = require("express").Router();
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-const { jwtSecret } = require("../secrets");
-const { JWT_SECRET = jwtSecret } = process.env;
+const jwtSecret = require("../secrets");
+const { JWT_SECRET } = process.env;
 const db = require("../../../database/model");
-const { validateUserBody, validateUsername } = require("../middleware/auth");
+const { validateUserBody, validateNewUsername } = require("../middleware/auth");
 
-router.post("/register", validateUserBody, validateUsername, (req, res) => {
-  console.log("REGISTER");
+router.post("/register", validateUserBody, validateNewUsername, (req, res) => {
   const user = req.body;
   const hash = bcrypt.hashSync(user.password, 8); //todo change salt
   user.password = hash;
@@ -25,18 +24,19 @@ router.post("/login", validateUserBody, (req, res) => {
   const { username, password } = req.body;
   db.findUserByUsername(username).then(user => {
     if (!user) {
-      res.status(400).json({ errorMessage: "incorrect credentials" });
+      res.status(403).json({ errorMessage: "incorrect credentials" });
     } else {
       if (bcrypt.compareSync(password, user.password)) {
         const token = tokenGenerator(user);
         res.status(200).json({ user, token });
       } else {
-        res.status(400).json({ errorMessage: "Incorrect Credentials" });
+        res.status(403).json({ errorMessage: "Incorrect Credentials" });
       }
     }
   });
 });
 
+//todo remove this endpoint
 router.get("/users", (req, res) => {
   db.userList()
     .then(users => res.status(200).json(users))
@@ -51,12 +51,11 @@ router.use("/", (req, res) => {
 
 module.exports = router;
 
-function tokenGenerator({ username, password }) {
+function tokenGenerator(user) {
   const payload = {
-    username,
-    password
+    ...user
   };
-  const secret = JWT_SECRET;
+  const secret = JWT_SECRET || jwtSecret;
   const options = {
     expiresIn: "1w"
   };

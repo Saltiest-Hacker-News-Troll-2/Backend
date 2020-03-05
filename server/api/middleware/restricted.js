@@ -8,7 +8,7 @@ module.exports = (req, res, next) => {
   if (authorization) {
     jwt.verify(authorization, JWT_SECRET, (err, decodedToken) => {
       if (err) {
-        res.status(401).json({ errorMessage: "Token compromised" });
+        res.status(401).json({ errorMessage: "Token compromised", err });
       } else {
         req.decodedToken = decodedToken;
         next();

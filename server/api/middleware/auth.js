@@ -2,7 +2,7 @@ const db = require("../../../database/model");
 
 module.exports = {
   validateUserBody,
-  validateUsername
+  validateNewUsername
 };
 
 function validateUserBody(req, res, next) {
@@ -16,7 +16,7 @@ function validateUserBody(req, res, next) {
   }
 }
 
-function validateUsername(req, res, next) {
+function validateNewUsername(req, res, next) {
   const { username } = req.body;
   db.findUserByUsername(username).then(user => {
     !user

@@ -1,17 +1,26 @@
 const db = require("./config");
 
 module.exports = {
+  userTruncate,
   userList,
   addUser,
   findUserById,
   findUserByUsername,
   updateUser,
+  removeUser,
+  getComments,
   getCommentsByUsername,
   getCommentById,
-  getCommentsByParent
+  getCommentsByParent,
+  createComment,
+  updateComment,
+  removeComment
 };
 
 //* USER
+function userTruncate() {
+  return db("USER").truncate();
+}
 function userList() {
   return db("USER");
 }
@@ -23,9 +32,7 @@ function addUser(user) {
 }
 
 function findUserById(id) {
-  return db("USER")
-    .where({ id })
-    .first();
+  return db("USER").where({ id });
 }
 
 function findUserByUsername(username) {
@@ -40,13 +47,53 @@ function updateUser(id, user) {
     .where({ id });
 }
 
+function removeUser(id) {
+  return db("USER")
+    .where({ id })
+    .delete();
+}
+
 //* COMMENTS
-function getCommentsByUsername(username) {
-  return db("CommentTable").where("by", username);
+function getComments(limit, offset) {
+  return db("Items")
+    .limit(limit)
+    .offset(offset);
+}
+function getCommentsByUsername(username, limit, offset) {
+  return db("Items")
+    .limit(limit)
+    .offset(offset)
+    .where("By", username);
 }
 function getCommentById(id) {
-  return db("CommentTable").where({ id });
+  return db("Items")
+    .where({ id })
+    .first();
 }
 function getCommentsByParent(id) {
-  return db("CommentTable").where("parent", id);
+  return db("Items").where("parent", id);
 }
+function createComment(comment) {
+  return db("Items")
+    .insert(comment)
+    .then(([id]) => getCommentById(id));
+}
+function updateComment(id, comment) {
+  return db("Items")
+    .update(comment)
+    .where({ id });
+}
+
+function removeComment(id) {
+  return db("Items")
+    .where({ id })
+    .delete();
+}
+
+// function scoreGenerator(id) {
+//   return getCommentById(id).then(([comment]) => {
+//     getScore(comment.Text)
+//       .then(res => console.log("score", res))
+//       .catch(err => console.log("error", err));
+//   });
+// }
