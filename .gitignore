@@ -2,5 +2,3 @@ node_modules
 .env
 .DS_Store
 HRDataTesting.db3
-HRData6.db3
-database/HRData6.db3
