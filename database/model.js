@@ -13,6 +13,7 @@ module.exports = {
   getCommentById,
   getCommentsByParent,
   createComment,
+  updateComment,
   removeComment
 };
 
@@ -77,6 +78,12 @@ function createComment(comment) {
     .insert(comment)
     .then(([id]) => getCommentById(id));
 }
+function updateComment(id, comment) {
+  return db("Items")
+    .update(comment)
+    .where({ id });
+}
+
 function removeComment(id) {
   return db("Items")
     .where({ id })
