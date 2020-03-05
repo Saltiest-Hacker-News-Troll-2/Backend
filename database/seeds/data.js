@@ -13,7 +13,7 @@ exports.seed = function(knex) {
         {
           By: "aaron695",
           Text:
-            "It depends.<p>If you take arguments to some sub-system (an example are database keys like the id of an entity instance), then you need to sanitize input.<p>Anyway, today I learnt something. If you have free-form data like text it makes sense not to sanitize it because in this case sanitizing depends on the output domain. For example &lt; is dangerous for HTML and &#x27; is dangerous for SQL, and so on."
+            "It depends.<p>If you take arguments to some sub-system (an example are database keys like the id of an entity instance), then you need to sanitize input.<p>Anyway, today I learnt something. If you have free-form data like text it makes sense not to sanitize it because in this case sanitizing depends on the output domain. For example &lt; is dangerous for HTML and  is dangerous for SQL, and so on."
         },
         {
           By: "aaron695",
@@ -48,7 +48,7 @@ exports.seed = function(knex) {
         {
           By: "aaron695",
           Text:
-            "Just to add to your point. In old time mafia controlled villages in the old country, anecdotally you did not have to lock your car, but few would argue that an average person in that village was &#x27;safe&#x27;.<p>It almost reminds me of some my parents&#x27; peers yearning for the good ole days of communism, cuz riffraffs would not dare to talk back to a cop.<p>edit: It is hard to argue with that kind of sentiment. It is technically right."
+            "Just to add to your point. In old time mafia controlled villages in the old country, anecdotally you did not have to lock your car, but few would argue that an average person in that village was safe.<p>It almost reminds me of some my parents peers yearning for the good ole days of communism, cuz riffraffs would not dare to talk back to a cop.<p>edit: It is hard to argue with that kind of sentiment. It is technically right."
         },
         {
           By: "aaron695",
@@ -73,12 +73,12 @@ exports.seed = function(knex) {
         {
           By: "aaron695",
           Text:
-            "This is a problem of the model of polymorphism a language has. It&#x27;s orthogonal to the functiorator distinction. It doesn&#x27;t arise based on having this distinction or not.<p>In Haskell you use typeclasses (you can think of them as Go interfaces or Rust traits) and without them you cannot introduce nameclashes. In Scheme (the Lisp that I know)... you don&#x27;t have anything. You import things from libraries, define variable bindings and depending on the order of all this your variable is going to be bound to something, most likely a procedure... but which one? Depends on the order. Not great. I prefer the Haskell approach to this, but then Haskell is a bit complicated in other areas. But again, this has little to do with &quot;operators vs functions&quot;."
+            "This is a problem of the model of polymorphism a language has. Its orthogonal to the functiorator distinction. It doesnt arise based on having this distinction or not.<p>In Haskell you use typeclasses (you can think of them as Go interfaces or Rust traits) and without them you cannot introduce nameclashes. In Scheme (the Lisp that I know)... you dont have anything. You import things from libraries, define variable bindings and depending on the order of all this your variable is going to be bound to something, most likely a procedure... but which one? Depends on the order. Not great. I prefer the Haskell approach to this, but then Haskell is a bit complicated in other areas. But again, this has little to do with &quot;operators vs functions&quot;."
         },
         {
           By: "aaron695",
           Text:
-            "This is a problem of the model of polymorphism a language has. It&#x27;s orthogonal to the functiorator distinction. It doesn&#x27;t arise based on having this distinction or not.<p>In Haskell you use typeclasses (you can think of them as Go interfaces or Rust traits) and without them you cannot introduce nameclashes. In Scheme (the Lisp that I know)... you don&#x27;t have anything. You import things from libraries, define variable bindings and depending on the order of all this your variable is going to be bound to something, most likely a procedure... but which one? Depends on the order. Not great. I prefer the Haskell approach to this, but then Haskell is a bit complicated in other areas. But again, this has little to do with &quot;operators vs functions&quot;."
+            "This is a problem of the model of polymorphism a language has. Its orthogonal to the functiorator distinction. It doesnt arise based on having this distinction or not.<p>In Haskell you use typeclasses (you can think of them as Go interfaces or Rust traits) and without them you cannot introduce nameclashes. In Scheme (the Lisp that I know)... you dont have anything. You import things from libraries, define variable bindings and depending on the order of all this your variable is going to be bound to something, most likely a procedure... but which one? Depends on the order. Not great. I prefer the Haskell approach to this, but then Haskell is a bit complicated in other areas. But again, this has little to do with &quot;operators vs functions&quot;."
         }
       ]);
     });

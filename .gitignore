@@ -2,3 +2,8 @@ node_modules
 .env
 .DS_Store
 HRDataTesting.db3
+HRData6.db3
+seedingData
+dataSeeds.csv
+scores.js
+database/scores.js
