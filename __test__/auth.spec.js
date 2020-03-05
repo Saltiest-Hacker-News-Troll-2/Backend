@@ -70,13 +70,13 @@ describe("Auth route", () => {
         .send(users.new);
 
       const expectedBody = {
-        ...response.body.user,
+        ...response.body.user[0],
         first_name: "Fred",
         last_name: "Fitzgerald",
         username: "fredFitz"
       };
 
-      expect(response.body.user).toEqual(expectedBody);
+      expect(response.body.user[0]).toEqual(expectedBody);
     });
   });
 
