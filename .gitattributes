@@ -1,1 +1,2 @@
-database/HRData6.sqlite3 filter=lfs diff=lfs merge=lfs -text
+HRData6.db3 filter=lfs diff=lfs merge=lfs -text
+database/HRData6.db3 filter=lfs diff=lfs merge=lfs -text

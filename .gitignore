@@ -1,4 +1,6 @@
 node_modules
 .env
 .DS_Store
-HackerRankTopDown.db3
+HRDataTesting.db3
+HRData6.db3
+database/HRData6.db3
