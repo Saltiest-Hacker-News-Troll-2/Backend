@@ -2,7 +2,8 @@ const db = require("./model");
 const axios = require("axios");
 
 const updateScores = async () => {
-  let comments = await db.getComments(10000, 45000);
+  let comments = await db.getComments(100, 0);
+  console.log(comments);
   let scores = [];
   for (let i = 0; i < comments.length; i++) {
     console.log({ i });
